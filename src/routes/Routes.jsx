@@ -4,6 +4,9 @@ import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import Register from "../pages/Regsiter";
 import Login from "../pages/Login";
+import DashboardLayout from "../layout/DashboardLayout";
+import PrivateRoutes from "./PrivateRoutes";
+import CreateTask from "../pages/dashboard/CreateTask";
 
 const allRoutes = createBrowserRouter([
 {
@@ -24,7 +27,17 @@ const allRoutes = createBrowserRouter([
             element: <Login></Login>,
         },
     ]
-}
+},
+{
+    path:"/",
+    element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
+    children: [
+        {
+            path:"/create-task",
+            element: <PrivateRoutes><CreateTask></CreateTask></PrivateRoutes>,
+        },
+    ]
+},
 ])
 
 export default allRoutes;
