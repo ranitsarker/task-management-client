@@ -1,46 +1,98 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import logo from '../assets/logo/logo.png';
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
+import toast from "react-hot-toast";
+import logo from "../assets/logo/logo.png"
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const {user, logOut} = useContext(AuthContext);
+    // logout 
+    const handleLogout = () => {
+        logOut()
+        .then(() => {
+            toast.success('Successfully logged out'); 
+        })
+        .catch(error => console.log(error))
+    }
 
-  const handleMobileMenuToggle = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  return (
-    <nav className="bg-gray-900 border-gray-100 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src={logo} className="h-28" alt="TaskZen" />
-          <span className="text-white self-center text-xl font-semibold whitespace-nowrap">TaskZen</span>
-        </NavLink>
-        <button
-          data-collapse-toggle="navbar-default"
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-default"
-          aria-expanded={isMobileMenuOpen ? 'true' : 'false'}
-          onClick={handleMobileMenuToggle}
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
-          </svg>
-        </button>
-        <div className={`w-full md:block md:w-auto ${isMobileMenuOpen ? 'block' : 'hidden'}`} id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
-            <li>
-              <NavLink to="/" className={`text-base ${location.pathname === '/' ? 'text-green-500' : 'text-gray-600'}`}>
-                Home
-              </NavLink>
+    const navItems = (
+      <ul className="lg:flex items-center space-x-4">
+        <li>
+          <NavLink
+            to='/'
+            className="text-white font-bold text-lg hover:bg-white hover:text-black px-3 py-2 rounded"
+          >
+            Home
+          </NavLink>
+        </li>
+        {user?.email ? (
+          <>
+            <li className="relative group">
+              <div className="flex items-center">
+                {user.photoURL && (
+                  <img
+                    src={user.photoURL}
+                    alt="User Profile"
+                    className="w-8 h-8 rounded-full ml-2 group-hover:opacity-80"
+                  />
+                )}
+              </div>
+              <div className="hidden group-hover:flex absolute top-12 right-0 flex-col items-start bg-white p-2 rounded shadow">
+                <span className="text-sm font-medium">{user.email}</span>
+                <button
+                  onClick={handleLogout}
+                  className="text-black font-bold text-lg hover:bg-white hover:text-black px-3 py-2 rounded"
+                >
+                  Logout
+                </button>
+              </div>
             </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  );
+          </>
+        ) : (
+          <li>
+            <NavLink
+              to='/login'
+              className="text-white font-bold text-lg hover:bg-white hover:text-black px-3 py-2 rounded"
+            >
+              Login
+            </NavLink>
+          </li>
+        )}
+      </ul>
+    );
+    
+
+    
+    
+    return (
+        <>
+            <div className="navbar bg-gray-900">
+                <div className="navbar-start">
+                    <div className="dropdown">
+                    <label tabIndex={0} className="btn btn-ghost lg:hidden text-green-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-900 rounded-box w-52">
+                        {navItems}
+                    </ul>
+                    </div>
+                    <Link to="/">
+                        <img
+                            src={logo}
+                            alt="Task management"
+                            className="w-32 h-auto"
+                        />
+                    </Link>
+
+                </div>
+                <div className="navbar-end hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1">
+                        {navItems}
+                    </ul>
+                </div>
+                </div>
+        </>
+    );
 };
 
 export default Navbar;
