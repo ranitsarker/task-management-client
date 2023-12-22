@@ -14,37 +14,44 @@ const ToDoList = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Load tasks for the current user from localStorage on component mount
+    const loadTasks = async () => {
+      try {
+        // Fetch tasks from the server
+        const response = await axios.get(`http://localhost:5000/get-user-tasks/${user.email}`);
+        const userTasks = {
+          todo: response.data.tasks.filter((task) => task.status === 'todo'),
+          ongoing: response.data.tasks.filter((task) => task.status === 'ongoing'),
+          complete: response.data.tasks.filter((task) => task.status === 'complete'),
+        };
+  
+        // Update the local state and localStorage
+        setTasks(userTasks);
+        localStorage.setItem(`tasks_${user.email}`, JSON.stringify(userTasks));
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+        setError('Failed to fetch tasks. Please try again.');
+      } finally {
+        // Set loading to false after updating state and localStorage
+        setLoading(false);
+      }
+    };
+  
+    // Check if there are tasks in localStorage; if not, fetch from the server
     const storedTasks = JSON.parse(localStorage.getItem(`tasks_${user.email}`)) || { todo: [], ongoing: [], complete: [] };
     setTasks(storedTasks);
-
-    // Fetch tasks from the server if localStorage is empty or tasks are not available
-    if (!storedTasks || !storedTasks.todo || storedTasks.todo.length === 0) {
-      const fetchUserTasks = async () => {
-        try {
-          const response = await axios.get(`http://localhost:5000/get-user-tasks/${user.email}`);
-          const userTasks = {
-            todo: response.data.tasks.filter((task) => task.status === 'todo'),
-            ongoing: response.data.tasks.filter((task) => task.status === 'ongoing'),
-            complete: response.data.tasks.filter((task) => task.status === 'complete'),
-          };
-          setTasks(userTasks);
-          localStorage.setItem(`tasks_${user.email}`, JSON.stringify(userTasks));
-          setLoading(false);
-        } catch (error) {
-          console.error('Error fetching tasks:', error);
-          setError('Failed to fetch tasks. Please try again.');
-          setLoading(false);
-        }
-      };
-
+  
+    if (!storedTasks.todo || storedTasks.todo.length === 0) {
       if (user) {
-        fetchUserTasks();
+        // Fetch tasks only if the user is authenticated
+        setLoading(true);
+        loadTasks();
       }
     } else {
+      // Set loading to false if tasks are available in localStorage
       setLoading(false);
     }
   }, [user]);
+  
 
   const handleDragStart = (e, task, status) => {
     e.dataTransfer.setData('task', JSON.stringify({ task, status }));

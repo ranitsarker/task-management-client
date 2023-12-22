@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AuthContext } from '../../providers/AuthProvider';
 import CommonSidebar from '../../components/dashboard/CommonSidebar';
 import toast, { Toaster } from 'react-hot-toast';
+import Swal from 'sweetalert2';
 
 const UpdateTask = () => {
   const { user } = useContext(AuthContext);
@@ -85,6 +86,43 @@ const UpdateTask = () => {
       console.error('Error updating task:', error);
     }
   };
+  const handleDeleteClick = async (taskId) => {
+    // Show a confirmation dialog using SweetAlert2
+    const confirmationResult = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    });
+
+    // If the user confirms the deletion
+    if (confirmationResult.isConfirmed) {
+      try {
+        const response = await axios.delete(`http://localhost:5000/delete-task/${taskId}`);
+        if (response.data.success) {
+          // Remove the deleted task from the UI
+          const updatedTasks = tasks.filter((task) => task._id !== taskId);
+          setTasks(updatedTasks);
+
+          // Show toast on successful delete
+          toast.success('Task deleted successfully');
+        } else {
+          console.error('Failed to delete task:', response.data.error);
+
+          // Show toast on unsuccessful delete
+          toast.error('Failed to delete task');
+        }
+      } catch (error) {
+        console.error('Error deleting task:', error);
+        // Show toast on error
+        toast.error('Error deleting task');
+      }
+    }
+  };
+
 
   return (
     <div className="flex bg-gray-100">
@@ -109,6 +147,9 @@ const UpdateTask = () => {
                     <p className="text-gray-600">Priority: {task.priority}</p>
                     <p className="text-gray-600">Created By: {task.createdBy.displayName}</p>
                     <button onClick={() => handleUpdateClick(task)}>Update</button>
+                    <button onClick={() => handleDeleteClick(task._id)}>
+                         Delete
+                    </button>
                   </li>
                 ))}
               </ul>
