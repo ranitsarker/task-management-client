@@ -9,6 +9,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import CreateTask from "../pages/dashboard/CreateTask";
 import DashboardHome from "../pages/dashboard/DashBoardHome";
 import ToDoList from "../pages/dashboard/ToDoList ";
+import Benefited from "../pages/Benefited";
 
 const allRoutes = createBrowserRouter([
 {
@@ -19,6 +20,10 @@ const allRoutes = createBrowserRouter([
         {
             path:"/",
             element: <Home></Home>,
+        },
+        {
+            path:"/benefit",
+            element: <Benefited></Benefited>,
         },
         {
             path:"/register",

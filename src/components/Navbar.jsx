@@ -25,6 +25,14 @@ const Navbar = () => {
             Home
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to='/benefit'
+            className="text-white font-bold text-lg hover:bg-white hover:text-black px-3 py-2 rounded"
+          >
+            Who Can Benefit
+          </NavLink>
+        </li>
         {user?.email ? (
           <>
             <li className="relative group">
