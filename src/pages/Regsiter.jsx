@@ -66,7 +66,7 @@ const Register = () => {
                             name="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"
                             required
                         />
                     </div>
@@ -80,7 +80,7 @@ const Register = () => {
                             name="photoURL"
                             value={photoURL}
                             onChange={(e) => setPhotoURL(e.target.value)}
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"
                             required
                         />
                     </div>
@@ -94,7 +94,7 @@ const Register = () => {
                             name="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"
                             required
                         />
                     </div>
@@ -108,14 +108,14 @@ const Register = () => {
                             name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"
                             required
                         />
                     </div>
                     <div className="text-center">
                         <button
                             type="submit"
-                            className="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 focus:outline-none"
+                            className="bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600 focus:outline-none"
                         >
                             Register
                         </button>

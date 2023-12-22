@@ -68,7 +68,7 @@ const Login = () => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"
                                 required
                             />
                         </div>
@@ -80,14 +80,14 @@ const Login = () => {
                                 type="password"
                                 id="password"
                                 name="password"
-                                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-green-500"
                                 required
                             />
                         </div>
                         <div className="text-center">
                             <button
                                 type="submit"
-                                className="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 focus:outline-none"
+                                className="bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600 focus:outline-none"
                             >
                                 Login
                             </button>
@@ -96,7 +96,7 @@ const Login = () => {
                     <div className="text-center">
                         <button
                             onClick={handleGoogleLogin}
-                            className="bg-blue-500 text-white btn my-3  hover:bg-blue-600"
+                            className="bg-green-500 text-white btn my-3  hover:bg-green-600"
                         >
 
                             <FaGoogle /> Login with Google

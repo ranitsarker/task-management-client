@@ -1,9 +1,21 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo/logo.png';
+import { AuthContext } from '../../providers/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 const CommonSidebar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const {logOut} = useContext(AuthContext);
+    // logout 
+    const handleLogout = () => {
+        logOut()
+        .then(() => {
+            toast.success('Successfully logged out'); 
+        })
+        .catch(error => console.log(error))
+    }
+
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
@@ -11,6 +23,7 @@ const CommonSidebar = () => {
 
   return (
     <>
+    <Toaster></Toaster>
       {/* Left Sidebar */}
       <nav className="hidden lg:flex flex-col w-64 border-r bg-white">
         <div className="p-4">
@@ -34,6 +47,11 @@ const CommonSidebar = () => {
               <Link to="/dashboard/ToDoList" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
                 ToDoList
               </Link>
+            </li>
+            <li>
+              <button onClick={handleLogout} className="block p-2 text-gray-700 hover:bg-gray-200 rounded w-full text-left">
+                Logout
+              </button>
             </li>
           </ul>
         </div>
@@ -75,6 +93,11 @@ const CommonSidebar = () => {
               <Link to="/dashboard/ToDoList" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
                 ToDoList
               </Link>
+            </li>
+            <li>
+              <button onClick={handleLogout} className="block p-2 text-gray-700 hover:bg-gray-200 rounded w-full text-left">
+                Logout
+              </button>
             </li>
           </ul>
         </div>
