@@ -27,6 +27,14 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
+            to='/about-us'
+            className="text-white font-bold text-lg hover:bg-white hover:text-black px-3 py-2 rounded"
+          >
+            About Us
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to='/benefit'
             className="text-white font-bold text-lg hover:bg-white hover:text-black px-3 py-2 rounded"
           >
@@ -84,12 +92,13 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                     </div>
-                    <Link to="/">
-                        <img
-                            src={logo}
-                            alt="Task management"
-                            className="w-32 h-auto"
-                        />
+                    <Link to="/" className="flex items-center">
+                      <img
+                        src={logo}
+                        alt="Task management"
+                        className="w-16 h-auto mr-2"
+                      />
+                      <span className="text-white text-xl font-bold">TaskZen</span>
                     </Link>
 
                 </div>

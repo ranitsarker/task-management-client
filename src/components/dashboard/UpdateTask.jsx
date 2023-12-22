@@ -137,7 +137,7 @@ const UpdateTask = () => {
           ) : error ? (
             <p>{error}</p>
           ) : (
-            <div className="flex flex-col">
+            <div className="flex flex-col mt-4">
               <ul className="space-y-4">
                 {tasks.map((task) => (
                   <li key={task._id} className="bg-white p-4 rounded shadow mb-4">
@@ -146,10 +146,21 @@ const UpdateTask = () => {
                     <p className="text-gray-600">Deadline: {task.deadline}</p>
                     <p className="text-gray-600">Priority: {task.priority}</p>
                     <p className="text-gray-600">Created By: {task.createdBy.displayName}</p>
-                    <button onClick={() => handleUpdateClick(task)}>Update</button>
-                    <button onClick={() => handleDeleteClick(task._id)}>
-                         Delete
-                    </button>
+                    <div className='mt-3'>
+                        <button
+                            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded mr-2 focus:outline-none"
+                            onClick={() => handleUpdateClick(task)}
+                            >
+                            Update
+                        </button>
+                        <button
+                            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded focus:outline-none"
+                            onClick={() => handleDeleteClick(task._id)}
+                            >
+                            Delete
+                        </button>
+                    </div>
+
                   </li>
                 ))}
               </ul>

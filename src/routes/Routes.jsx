@@ -11,6 +11,7 @@ import DashboardHome from "../pages/dashboard/DashBoardHome";
 import ToDoList from "../pages/dashboard/ToDoList ";
 import Benefited from "../pages/Benefited";
 import UpdateTask from "../components/dashboard/UpdateTask";
+import AboutUs from "../pages/AboutUs";
 
 const allRoutes = createBrowserRouter([
 {
@@ -33,6 +34,10 @@ const allRoutes = createBrowserRouter([
         {
             path:"/login",
             element: <Login></Login>,
+        },
+        {
+            path:"/about-us",
+            element: <AboutUs></AboutUs>,
         },
     ]
 },

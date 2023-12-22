@@ -28,7 +28,7 @@ const CommonSidebar = () => {
       <nav className="hidden lg:flex flex-col w-64 border-r bg-white">
         <div className="p-4">
           {/* Your logo or branding */}
-          <img src={logo} alt="" className="w-24 h-24" />
+          <img src={logo} alt="" className="w-16 h-16" />
         </div>
         <div className="flex-1 overflow-y-auto">
           {/* Navigation Links */}
@@ -51,6 +51,11 @@ const CommonSidebar = () => {
             <li>
               <Link to="/dashboard/update-task" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
                 Update Task
+              </Link>
+            </li>
+            <li>
+              <Link to="/" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
+                Home
               </Link>
             </li>
             <li>
@@ -81,7 +86,7 @@ const CommonSidebar = () => {
         <div className="lg:hidden fixed inset-y-0 left-0 w-64 bg-white border-r overflow-y-auto z-50">
           {/* Mobile Menu Content */}
           <div className="p-4">
-            <img src={logo} alt="" className="w-24 h-24 mx-auto" />
+            <img src={logo} alt="" className="w-16 h-16 mx-auto" />
           </div>
           <ul className="py-4">
             <li>
@@ -102,6 +107,11 @@ const CommonSidebar = () => {
             <li>
               <Link to="/dashboard/update-task" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
                 Update Task
+              </Link>
+            </li>
+            <li>
+              <Link to="/" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
+                Home
               </Link>
             </li>
             <li>
