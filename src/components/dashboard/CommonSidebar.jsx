@@ -49,6 +49,11 @@ const CommonSidebar = () => {
               </Link>
             </li>
             <li>
+              <Link to="/dashboard/update-task" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
+                Update Task
+              </Link>
+            </li>
+            <li>
               <button onClick={handleLogout} className="block p-2 text-gray-700 hover:bg-gray-200 rounded w-full text-left">
                 Logout
               </button>
@@ -92,6 +97,11 @@ const CommonSidebar = () => {
             <li>
               <Link to="/dashboard/ToDoList" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
                 ToDoList
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/update-task" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
+                Update Task
               </Link>
             </li>
             <li>

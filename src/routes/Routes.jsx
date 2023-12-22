@@ -10,6 +10,7 @@ import CreateTask from "../pages/dashboard/CreateTask";
 import DashboardHome from "../pages/dashboard/DashBoardHome";
 import ToDoList from "../pages/dashboard/ToDoList ";
 import Benefited from "../pages/Benefited";
+import UpdateTask from "../components/dashboard/UpdateTask";
 
 const allRoutes = createBrowserRouter([
 {
@@ -50,6 +51,10 @@ const allRoutes = createBrowserRouter([
         {
             path:"ToDoList",
             element: <PrivateRoutes><ToDoList></ToDoList></PrivateRoutes>,
+        },
+        {
+            path:"update-task",
+            element: <PrivateRoutes><UpdateTask></UpdateTask></PrivateRoutes>,
         },
     ]
 },
