@@ -8,6 +8,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import PrivateRoutes from "./PrivateRoutes";
 import CreateTask from "../pages/dashboard/CreateTask";
 import DashboardHome from "../pages/dashboard/DashBoardHome";
+import ToDoList from "../pages/dashboard/ToDoList ";
 
 const allRoutes = createBrowserRouter([
 {
@@ -40,6 +41,10 @@ const allRoutes = createBrowserRouter([
         {
             path:"create-task",
             element: <PrivateRoutes><CreateTask></CreateTask></PrivateRoutes>,
+        },
+        {
+            path:"ToDoList",
+            element: <PrivateRoutes><ToDoList></ToDoList></PrivateRoutes>,
         },
     ]
 },

@@ -80,6 +80,11 @@ const CreateTask = () => {
                 Create Task
               </Link>
             </li>
+            <li>
+              <Link to="/dashboard/ToDoList" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
+                ToDoList
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
@@ -193,6 +198,11 @@ const CreateTask = () => {
             <li>
               <Link to="/dashboard/profile" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
                 Profile
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard/ToDoList" className="block p-2 text-gray-700 hover:bg-gray-200 rounded">
+                ToDoList
               </Link>
             </li>
           </ul>
